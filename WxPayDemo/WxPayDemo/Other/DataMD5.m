@@ -125,11 +125,11 @@
 }
 
 
-//创建发起支付时的sige签名
+//创建发起支付时的sign签名
 
 -(NSString *)createMD5SingForPay:(NSString *)appid_key partnerid:(NSString *)partnerid_key prepayid:(NSString *)prepayid_key package:(NSString *)package_key noncestr:(NSString *)noncestr_key timestamp:(UInt32)timestamp_key{
     NSMutableDictionary *signParams = [NSMutableDictionary dictionary];
-    [signParams setObject:appid_key forKey:@"appid"];
+    [signParams setObject:appid_key forKey:WXAPPID];
     [signParams setObject:noncestr_key forKey:@"noncestr"];
     [signParams setObject:package_key forKey:@"package"];
     [signParams setObject:partnerid_key forKey:@"partnerid"];
@@ -145,7 +145,7 @@
     //拼接字符串
     for (NSString *categoryId in sortedArray) {
         if (   ![[signParams objectForKey:categoryId] isEqualToString:@""]
-            && ![[signParams objectForKey:categoryId] isEqualToString:@"sign"]
+            && ![[signParams objectForKey:categoryId] isEqualToString:WXSIGN]
             && ![[signParams objectForKey:categoryId] isEqualToString:@"key"]
             )
         {

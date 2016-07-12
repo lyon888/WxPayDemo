@@ -12,6 +12,9 @@
 #import "WXApiRequestHandler.h"
 
 
+#pragma mark - 需要配置的参数
+
+
 // 开放平台登录https://open.weixin.qq.com的开发者中心获取APPID
 #define WX_APPID @"wxd21d890******"
 // 开放平台登录https://open.weixin.qq.com的开发者中心获取AppSecret。
@@ -23,36 +26,39 @@
 #define WX_PartnerKey @"B6246A6D******30EEA0F78D3B461"
 
 
+
+
+
 #pragma mark - 统一下单请求参数键值
 
-//  应用id
+// 应用id
 #define WXAPPID @"appid"
-//  商户号
+// 商户号
 #define WXMCHID @"mch_id"
-//  随机字符串
+// 随机字符串
 #define WXNONCESTR @"nonce_str"
-//  签名
+// 签名
 #define WXSIGN @"sign"
-//  商品描述
+// 商品描述
 #define WXBODY @"body"
-//  商户订单号
+// 商户订单号
 #define WXOUTTRADENO @"out_trade_no"
-//  总金额
+// 总金额
 #define WXTOTALFEE @"total_fee"
-//  终端IP
+// 终端IP
 #define WXEQUIPMENTIP @"spbill_create_ip"
-//  通知地址
+// 通知地址
 #define WXNOTIFYURL @"notify_url"
-//  交易类型
+// 交易类型
 #define WXTRADETYPE @"trade_type"
-//  预支付交易会话
+// 预支付交易会话
 #define WXPREPAYID @"prepay_id"
 
 
 
 #pragma mark - 微信下单接口
 
-//  微信统一下单接口连接
+// 微信统一下单接口连接
 #define WXUNIFIEDORDERURL @"https://api.mch.weixin.qq.com/pay/unifiedorder"
 
 #endif /* PrefixHeader_pch */

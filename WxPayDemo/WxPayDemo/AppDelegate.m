@@ -15,8 +15,8 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    
     // 注册微信支付
     [WXApi registerApp:WX_APPID withDescription:@"demo 2.0"];
     

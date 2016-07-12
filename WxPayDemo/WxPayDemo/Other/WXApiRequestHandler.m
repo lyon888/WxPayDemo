@@ -13,9 +13,7 @@
 #import "XMLDictionary.h"
 #import <AFNetworking.h>
 
-
 #pragma mark - 用户获取设备ip地址
-
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
@@ -26,7 +24,6 @@
 //生成随机数算法 ,随机字符串，不长于32位
 //微信支付API接口协议中包含字段nonce_str，主要保证签名不可预测。
 //我们推荐生成随机数算法如下：调用随机数函数生成，将得到的值转换为字符串。
-
 + (NSString *)generateTradeNO {
     
     static int kNumber = 15;
@@ -56,7 +53,7 @@
 }
 
 
-#pragma mark - 获取设备ip地址
+#pragma mark - 获取设备ip地址 / 貌似该方法获取ip地址只能在wifi状态下进行
 
 + (NSString *)fetchIPAddress {
     NSString *address = @"error";
@@ -105,39 +102,33 @@
 #define PRICE @"1"
 
     
+    
+    
+    
 #pragma mark － 客户端操作/ 实际操作由服务端操作
     
-    //  随机字符串变量 这里最好使用和安卓端一致的生成逻辑
-    NSString *nonce_str = [self generateTradeNO];
+    // 随机字符串变量 这里最好使用和安卓端一致的生成逻辑
+    NSString *tradeNO = [self generateTradeNO];
     
-    //  设备IP地址,请再wifi环境下测试,否则获取的ip地址为error,正确格式应该是8.8.8.8
+    // 设备IP地址,请再wifi环境下测试,否则获取的ip地址为error,正确格式应该是8.8.8.8
     NSString *addressIP = [self fetchIPAddress];
     
-    //  随机产生订单号用于测试，正式使用请换成你从自己服务器获取的订单号
+    // 随机产生订单号用于测试，正式使用请换成你从自己服务器获取的订单号
     NSString *orderno = [NSString stringWithFormat:@"%ld",time(0)];
   
-    //  获取SIGN签名
-    DataMD5 *data = [[DataMD5 alloc] initWithAppid:WX_APPID
-                                            mch_id:MCH_ID
-                                         nonce_str:nonce_str
-                                        partner_id:WX_PartnerKey
-                                              body:@"充值"
-                                      out_trade_no:orderno
-                                         total_fee:PRICE
-                                  spbill_create_ip:addressIP
-                                        notify_url:NOTIFY_URL
-                                        trade_type:TRADE_TYPE];
     
-    // 转换成xml字符串
+    
+    
+    // 获取SIGN签名
+    DataMD5 *data = [[DataMD5 alloc] initWithAppid:WX_APPID mch_id:MCH_ID nonce_str:tradeNO partner_id:WX_PartnerKey body:@"充值" out_trade_no:orderno total_fee:PRICE spbill_create_ip:addressIP notify_url:NOTIFY_URL trade_type:TRADE_TYPE];
+    
+    // 转换成XML字符串,这里知识形似XML，实际并不是正确的XML格式，需要使用AF方法进行转义
     NSString *string = [[data dic] XMLString];
-  
     
-    
-
-    
+ 
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    //这里传入的xml字符串只是形似xml，但不是正确是xml格式，需要使用AF方法进行转义
+    // 这里传入的XML字符串只是形似XML，但不是正确是XML格式，需要使用AF方法进行转义
     session.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     [session.requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [session.requestSerializer setValue:WXUNIFIEDORDERURL forHTTPHeaderField:@"SOAPAction"];

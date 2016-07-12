@@ -16,7 +16,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    //  发起支付
+    // 发起支付
     [WXApiRequestHandler jumpToWxPay];
 }
 
