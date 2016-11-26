@@ -16,9 +16,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"1111");
-    // 发起支付
-    [WXApiRequestHandler jumpToWxPay];
+    //发起微信支付
+    [MXWechatPayHandler jumpToWxPay];
 }
 
 

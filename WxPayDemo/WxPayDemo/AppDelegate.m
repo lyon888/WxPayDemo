@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "WXApiManager.h"
 
 @interface AppDelegate ()
 
@@ -15,10 +14,10 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    
-    // 注册微信支付
-    [WXApi registerApp:WX_APPID withDescription:@"demo 2.0"];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    //注册微信支付
+    [WXApi registerApp:MXWechatAPPID withDescription:@"微信支付"];
     
     return YES;
 }
