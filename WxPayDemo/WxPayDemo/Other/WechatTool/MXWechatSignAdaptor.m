@@ -69,53 +69,51 @@
     return self;
 }
 
-
 //创建签名
 //签名算法
 //签名生成的通用步骤如下：
-//第一步，设所有发送或者接收到的数据为集合M，将集合M内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串stringA。
-//特别注意以下重要规则：
-//◆ 参数名ASCII码从小到大排序（字典序）；
-//◆ 如果参数的值为空不参与签名；
-//◆ 参数名区分大小写；
-//◆ 验证调用返回或微信主动通知签名时，传送的sign参数不参与签名，将生成的签名与该sign值作校验。
-//◆ 微信接口可能增加字段，验证签名时必须支持增加的扩展字段
-//第二步，在stringA最后拼接上key得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值signValue。
-//key设置路径：微信商户平台(pay.weixin.qq.com)-->账户设置-->API安全-->密钥设置
-
 -(void)createMd5Sign:(NSMutableDictionary*)dict
 {
     NSMutableString *contentString  =[NSMutableString string];
     
     NSArray *keys = [dict allKeys];
     
-    //按字母顺序排序
+    
+    //第一步，设所有发送或者接收到的数据为集合M，将集合M内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串stringA。
+    //特别注意以下重要规则：
+    //◆ 参数名ASCII码从小到大排序（字典序）；
+    //◆ 如果参数的值为空不参与签名；
+    //◆ 参数名区分大小写；
+    //◆ 验证调用返回或微信主动通知签名时，传送的sign参数不参与签名，将生成的签名与该sign值作校验。
+    //◆ 微信接口可能增加字段，验证签名时必须支持增加的扩展字段
+    
+    //1.按字母顺序排序
     NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2 options:NSNumericSearch];
     }];
     
-    //拼接字符串
+    //2.拼接字符串
     for (NSString *categoryId in sortedArray) {
         
-        if (   ![[dict objectForKey:categoryId] isEqualToString:@""]
-            && ![[dict objectForKey:categoryId] isEqualToString:@"sign"]
-            && ![[dict objectForKey:categoryId] isEqualToString:@"key"]
-            )
+        if (   ![dict[categoryId] isEqualToString:@""]
+            && ![dict[categoryId] isEqualToString:@"sign"]
+            && ![dict[categoryId] isEqualToString:@"key"])
         {
-            [contentString appendFormat:@"%@=%@&", categoryId, [dict objectForKey:categoryId]];
+            [contentString appendFormat:@"%@=%@&", categoryId, dict[categoryId]];
         }
     }
+    
+    //第二步，在stringA最后拼接上key得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值signValue。
+    //key设置路径：微信商户平台(pay.weixin.qq.com)-->账户设置-->API安全-->密钥设置
     //添加商户密钥key字段
     [contentString appendFormat:@"key=%@",_wechatPartnerKey];
     
     //MD5 获取Sign签名
     NSString *md5Sign =[self md5:contentString];
     
-    //  
-    [self.dic setValue:md5Sign forKey:@"sign"];
     
+    [self.dic setValue:md5Sign forKey:@"sign"];
 }
-
 
 //创建发起支付时的sign签名
 -(NSString *)createMD5SingForPay:(NSString *)appid_key
@@ -175,7 +173,6 @@
             result[12], result[13], result[14], result[15]
             ];
 }
-
 
 #pragma makr - Getter and Setter
 

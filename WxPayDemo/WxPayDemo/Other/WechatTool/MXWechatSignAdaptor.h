@@ -28,5 +28,4 @@
                           package:(NSString *)package_key
                          noncestr:(NSString *)noncestr_key
                         timestamp:(UInt32)timestamp_key;
-
 @end
