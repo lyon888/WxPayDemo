@@ -1,11 +1,12 @@
 /**
- @author lyoniOS 2016-11-26
+ @@create by 刘智援 2016-11-28
  
- @return 微信调用工具类
+ @简书地址:    http://www.jianshu.com/users/0714484ea84f/latest_articles
+ @Github地址: https://github.com/lyoniOS
+ @return MXWechatPayHandler（微信调用工具类）
  */
 
 #import "MXWechatPayHandler.h"
-///</AFNetworking.h>这个文件是否存在.如果存在，能被引入就返回YES，否则返回NO
 #if __has_include(<AFNetworking/AFNetworking.h>)
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworkActivityIndicatorManager.h>

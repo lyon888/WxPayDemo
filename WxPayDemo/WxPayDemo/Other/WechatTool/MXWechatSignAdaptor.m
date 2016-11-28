@@ -1,10 +1,10 @@
-//
-//  DataMD5.m
-//  WeChatDemo
-//
-//  Created by 尹俊雄 on 15/7/2.
-//  Copyright (c) 2015年 yjx. All rights reserved.
-//
+/**
+ @@create by 刘智援 2016-11-28
+ 
+ @简书地址:    http://www.jianshu.com/users/0714484ea84f/latest_articles
+ @Github地址: https://github.com/lyoniOS
+ @return MXWechatSignAdaptor（微信签名工具类）
+ */
 
 #import "MXWechatSignAdaptor.h"
 #import <CommonCrypto/CommonDigest.h>

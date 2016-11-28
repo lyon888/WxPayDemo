@@ -1,7 +1,9 @@
 /**
- @author lyoniOS 2016-11-26
+ @@create by 刘智援 2016-11-28
  
- @return 微信签名工具类
+ @简书地址:    http://www.jianshu.com/users/0714484ea84f/latest_articles
+ @Github地址: https://github.com/lyoniOS
+ @return MXWechatSignAdaptor（微信签名工具类）
  */
 
 #import <Foundation/Foundation.h>

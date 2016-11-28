@@ -1,11 +1,10 @@
-//
-//  MXWechatConfig.h
-//  WxPayDemo
-//
-//  Created by 广东众网合一网络科技有限公司 on 16/11/26.
-//  Copyright © 2016年 GdZwhy. All rights reserved.
-//
-
+/**
+ @@create by 刘智援 2016-11-28
+ 
+ @简书地址:    http://www.jianshu.com/users/0714484ea84f/latest_articles
+ @Github地址: https://github.com/lyoniOS
+ @return 配置文件
+ */
 #ifndef MXWechatConfig_h
 #define MXWechatConfig_h
 
@@ -22,14 +21,14 @@
  */
 
 // 开放平台登录https://open.weixin.qq.com的开发者中心获取APPID
-#define MXWechatAPPID       @"wxbff3f84cc71554c1"
+#define MXWechatAPPID       @"wxbff3f84cc71554c*"
 // 开放平台登录https://open.weixin.qq.com的开发者中心获取AppSecret。
-#define MXWechatAPPSecret   @"e5d5a34eb45ad58b64d1bf2eef8b7122"
+#define MXWechatAPPSecret   @"e5d5a34eb45ad58b64d*bf2eef8b7*22"
 // 微信支付商户号
-#define MXWechatMCHID       @"1380919002"
+#define MXWechatMCHID       @"13809*9002"
 // 安全校验码（MD5）密钥，商户平台登录账户和密码登录http://pay.weixin.qq.com
 // 平台设置的“API密钥”，为了安全，请设置为以数字和字母组成的32字符串。
-#define MXWechatPartnerKey  @"6de04e7247f9aab635966cee181ccced"
+#define MXWechatPartnerKey  @"6de04e7247f9aab635966cee18*ccced"
 
 
 /**
